@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   try {
-    const response = await fetch("https://freeapi.miniprojectideas.com/api/EcommerceApp/GetAllProducts"); 
+    const response = await fetch("https://freeapi.miniprojectideas.com/api/amazon/GetAllProducts"); 
     const data = await response.json();
 
     res.setHeader("Access-Control-Allow-Origin", "*");
