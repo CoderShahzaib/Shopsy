@@ -52,10 +52,9 @@ export class ProductsService {
     }
 
     return this.http
-      .get<APIResponse>(this.url + API_ENDPOINT.ALL_PRODUCTS)
+      .get<APIResponse>(this.url + '/products')
       .pipe(tap((res) => this.setCache(key, res)));
   }
-
   getAllCategory(): Observable<APIResponse> {
     const key = 'all_category';
     const cached = this.getFromCache(key);
