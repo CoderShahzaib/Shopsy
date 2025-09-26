@@ -9,7 +9,7 @@ import { APIResponse, CartItemsModel, CartModel } from '../models/product';
   providedIn: 'root',
 })
 export class ProductsService {
-  private url = environment.apiUrl;
+  private url = '/api';
   private http = inject(HttpClient);
 
   cartItems = signal<CartItemsModel[]>([]);
