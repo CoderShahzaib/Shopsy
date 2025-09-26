@@ -1,0 +1,11 @@
+{
+  "/api": {
+    "target": "https://freeapi.miniprojectideas.com/api/amazon",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}

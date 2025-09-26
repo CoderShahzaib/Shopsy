@@ -1,0 +1,89 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100 px-4">
+  <div class="bg-white shadow-2xl rounded-2xl p-6 sm:p-8 w-full max-w-md">
+    <h1 class="text-2xl sm:text-3xl font-bold text-center text-gray-800">Sign Up</h1>
+    <p class="text-gray-500 text-center mt-2">Create a new account.</p>
+
+    <form [formGroup]="registerForm" (ngSubmit)="registerCustomer()" class="flex flex-col mt-8 space-y-4">
+
+      <div>
+        <input
+          type="text"
+          placeholder="Name"
+          formControlName="Name"
+          class="w-full border rounded-lg px-4 py-2 focus:outline-none transition
+                 focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+          [class.border-red-500]="registerForm.get('Name')?.invalid && registerForm.get('Name')?.touched"
+          [class.border-green-500]="registerForm.get('Name')?.valid"
+        />
+        @if (registerForm.get('Name')?.touched && registerForm.get('Name')?.errors) {
+          <p class="text-red-500 text-sm mt-1">
+            @if (registerForm.get('Name')?.errors?.['required']) {
+              <span>Name is required.</span>
+            }
+            @if (registerForm.get('Name')?.errors?.['minlength']) {
+              <span>At least 3 characters.</span>
+            }
+          </p>
+        }
+      </div>
+
+      <div>
+        <input
+          type="text"
+          placeholder="Mobile No"
+          formControlName="MobileNo"
+          class="w-full border rounded-lg px-4 py-2 focus:outline-none transition
+                 focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+          [class.border-red-500]="registerForm.get('MobileNo')?.invalid && registerForm.get('MobileNo')?.touched"
+          [class.border-green-500]="registerForm.get('MobileNo')?.valid"
+        />
+        @if (registerForm.get('MobileNo')?.touched && registerForm.get('MobileNo')?.errors) {
+          <p class="text-red-500 text-sm mt-1">
+            @if (registerForm.get('MobileNo')?.errors?.['required']) {
+              <span>Mobile number is required.</span>
+            }
+            @if (registerForm.get('MobileNo')?.errors?.['minlength']) {
+              <span>Must be at least 10 digits.</span>
+            }
+          </p>
+        }
+      </div>
+
+      <div>
+        <input
+          type="password"
+          placeholder="Password"
+          formControlName="Password"
+          class="w-full border rounded-lg px-4 py-2 focus:outline-none transition
+                 focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
+          [class.border-red-500]="registerForm.get('Password')?.invalid && registerForm.get('Password')?.touched"
+          [class.border-green-500]="registerForm.get('Password')?.valid"
+        />
+        @if (registerForm.get('Password')?.touched && registerForm.get('Password')?.errors) {
+          <p class="text-red-500 text-sm mt-1">
+            @if (registerForm.get('Password')?.errors?.['required']) {
+              <span>Password is required.</span>
+            }
+            @if (registerForm.get('Password')?.errors?.['minlength']) {
+              <span>At least 8 characters.</span>
+            }
+          </p>
+        }
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="registerForm.invalid"
+        class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 
+               text-white font-semibold py-2 px-4 rounded-lg shadow-md transition transform hover:scale-105
+               disabled:opacity-50 disabled:cursor-not-allowed">
+        Sign Up
+      </button>
+    </form>
+
+    <p class="text-sm text-gray-600 text-center mt-6">
+      Already have an account?
+      <a routerLink="/login" class="text-blue-600 hover:underline font-medium">Login</a>
+    </p>
+  </div>
+</div>

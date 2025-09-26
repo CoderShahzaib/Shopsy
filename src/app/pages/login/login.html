@@ -1,0 +1,59 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100 px-4">
+  <div class="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-md">
+    <h1 class="text-2xl sm:text-3xl font-bold text-center text-gray-800">Login</h1>
+    <p class="text-gray-500 text-center mt-2">Welcome back! Please login to your account.</p>
+
+    <form [formGroup]="loginForm" class="flex flex-col mt-8 space-y-4" (ngSubmit)="loginCustomer()">
+      <input 
+        type="text" 
+        formControlName="Name"
+        placeholder="Mobile No" 
+        formControlName="UserName"
+        class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition"
+        [class.border-red-500]="loginForm.get('Name')?.invalid && loginForm.get('Name')?.touched"
+        [class.border-green-500]="loginForm.get('Name')?.valid" 
+      />
+      @if (loginForm.get('Name')?.touched && loginForm.get('Name')?.errors) {
+          <p class="text-red-500 text-sm mt-1">
+            @if (loginForm.get('Name')?.errors?.['required']) {
+              <span>Name is required.</span>
+            }
+            @if (loginForm.get('Name')?.errors?.['minlength']) {
+              <span>At least 3 characters.</span>
+            }
+          </p>
+        }
+      <input 
+        type="password" 
+        formControlName="UserPassword"
+        placeholder="Password" 
+        class="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 transition"
+        [class.border-red-500]="loginForm.get('Password')?.invalid && loginForm.get('Password')?.touched"
+        [class.border-green-500]="loginForm.get('Password')?.valid"
+      />
+      @if(loginForm.get('Password')?.touched && loginForm.get('Password')?.errors) {
+        <p class="text-red-500 text-sm mt-1">
+          @if (loginForm.get('Password')?.errors?.['required']) {
+            <span>Password is required.</span>
+          }
+          @if (loginForm.get('Password')?.errors?.['minlength']) {
+            <span>At least 8 characters.</span>
+          }
+        </p>
+      }
+      <button 
+        type="submit" 
+        [disabled]="loginForm.invalid"
+        class="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition transform hover:scale-105">
+        Login
+      </button>
+    </form>
+
+    <p class="text-sm text-gray-600 text-center mt-6">
+      Don’t have an account? 
+      <a routerLink="/signup" class="text-blue-600 hover:underline font-medium">Sign up</a>
+    </p>
+    
+  </div>
+</div>
+<router-outlet></router-outlet>
