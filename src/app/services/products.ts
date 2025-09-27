@@ -105,7 +105,7 @@ export class ProductsService {
   }
 
   getAllCartItems(): Observable<APIResponse> {
-    return this.http.get<APIResponse>(this.url + '/getallcartitems');
+    return this.http.get<APIResponse>(this.url + '/allcartitems');
   }
 
   loadCart(userId: number) {
