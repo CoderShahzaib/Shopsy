@@ -64,7 +64,7 @@ export class ProductsService {
     }
 
     return this.http
-      .get<APIResponse>(this.url + API_ENDPOINT.ALL_CATEOGRY)
+      .get<APIResponse>(this.url + '/category')
       .pipe(tap((res) => this.setCache(key, res)));
   }
 
