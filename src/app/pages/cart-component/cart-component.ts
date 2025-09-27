@@ -3,6 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular
 import { ProductsService } from '../../services/products';
 import { CartItemsModel } from '../../models/product';
 import { Router } from '@angular/router';
+import { ToastService } from '../../services/toastservice';
 
 @Component({
   selector: 'app-cart-component',
@@ -15,6 +16,7 @@ export class CartComponent implements OnInit {
   productSrv = inject(ProductsService);
   @Output() close = new EventEmitter<void>();
   router = inject(Router);
+  toast = inject(ToastService);
   closeCart() {
     this.close.emit();
   }
@@ -45,6 +47,9 @@ export class CartComponent implements OnInit {
 
     const userObj = JSON.parse(userString);
 
-    this.productSrv.deleteCartItem(cartId, userObj.custId);
+    this.productSrv.deleteCartItem(cartId, userObj.custId).subscribe({
+      next: () => this.toast.success('Item removed from cart'),
+      error: () => this.toast.error('Failed to remove item'),
+    });
   }
 }

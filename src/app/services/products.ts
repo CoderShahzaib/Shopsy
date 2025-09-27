@@ -122,22 +122,20 @@ export class ProductsService {
     );
   }
 
-  deleteCartItem(cartId: number, userId: number) {
-    this.deleteProductFromCartById(cartId).subscribe({
-      next: (res) => {
-        console.log('API Response:', res);
+  deleteCartItem(cartId: number, userId: number): Observable<APIResponse> {
+  return this.deleteProductFromCartById(cartId).pipe(
+    tap((res) => {
+      console.log('API Response:', res);
 
-        if (res.result) {
-          this.cartItems.update((items) => items.filter((item) => item.cartId !== cartId));
-        } else {
-          console.warn('Delete failed:', res.message);
-        }
+      if (res.result) {
+        this.cartItems.update((items) => items.filter((item) => item.cartId !== cartId));
+      } else {
+        console.warn('Delete failed:', res.message);
+      }
 
-        this.loadCart(userId);
-      },
-      error: (err) => {
-        console.error('Error deleting cart item:', err);
-      },
-    });
-  }
+      this.loadCart(userId);
+    })
+  );
+}
+
 }
