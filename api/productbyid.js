@@ -1,6 +1,19 @@
 export default async function handler(req, res) {
   try {
-    const response = await fetch(`https://freeapi.miniprojectideas.com/api/amazon/GetProductById?${id}`); 
+    const { id } = req.query;
+
+    if (!id) {
+      return res.status(400).json({ message: "Product ID is required" });
+    }
+
+    const response = await fetch(
+      `https://freeapi.miniprojectideas.com/api/amazon/GetProductById?id=${id}`
+    );
+
+    if (!response.ok) {
+      throw new Error(`API request failed with status ${response.status}`);
+    }
+
     const data = await response.json();
 
     res.setHeader("Access-Control-Allow-Origin", "*");
@@ -8,6 +21,9 @@ export default async function handler(req, res) {
 
     res.status(200).json(data);
   } catch (error) {
-    res.status(500).json({ message: "Error fetching products", error: error.message });
+    res.status(500).json({
+      message: "Error fetching product",
+      error: error.message,
+    });
   }
 }
