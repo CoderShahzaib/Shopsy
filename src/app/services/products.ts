@@ -95,7 +95,7 @@ export class ProductsService {
   }
 
   addToCart(data: CartModel): Observable<APIResponse> {
-    return this.http.post<APIResponse>(this.url + API_ENDPOINT.ADD_TO_CART, data).pipe(
+    return this.http.post<APIResponse>(this.url + '/addtocart', data).pipe(
       tap(() => {
         if (data.CustId) {
           this.loadCart(data.CustId);
@@ -105,7 +105,7 @@ export class ProductsService {
   }
 
   getAllCartItems(): Observable<APIResponse> {
-    return this.http.get<APIResponse>(this.url + API_ENDPOINT.GET_ALL_CART_ITEMS);
+    return this.http.get<APIResponse>(this.url + '/getallcartitems');
   }
 
   loadCart(userId: number) {
@@ -118,7 +118,7 @@ export class ProductsService {
 
   deleteProductFromCartById(cartId: number): Observable<APIResponse> {
     return this.http.get<APIResponse>(
-      `${this.url}${API_ENDPOINT.DELETE_PRODUCT_FROM_CART}?id=${cartId}`
+      `${this.url}/deletecartitem?id=${cartId}`
     );
   }
 

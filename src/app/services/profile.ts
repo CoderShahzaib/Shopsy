@@ -12,12 +12,12 @@ export class Profile {
   url = environment.apiUrl;
 
   registerUser(data: RegisterCustomerModel): Observable<SignupResponse> {
-    return this.http.post<SignupResponse>(this.url + '/RegisterCustomer', data);
+    return this.http.post<SignupResponse>(this.url + '/registeruser', data);
   }
 
 
   loginCustomer(body: { UserName: string; UserPassword: string }): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.url}/Login`, body);
+    return this.http.post<LoginResponse>(`${this.url}/loginuser`, body);
   }
 
 }
