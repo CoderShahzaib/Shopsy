@@ -6,42 +6,31 @@ body{
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-/* ✅ Success Toast */
-.mat-mdc-snack-bar-container.snack-success {
-  --mdc-snackbar-container-color: transparent; /* disable default MDC background */
-  background: linear-gradient(135deg, #43a047, #66bb6a) !important;
-  color: #fff !important;
-  font-weight: 600;
-  border-radius: 12px !important;
-  padding: 14px 20px !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
+/* This ensures the internal surface background is transparent so your custom panel-class background is visible */
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background-color: transparent !important;
 }
 
-/* ✅ Error Toast */
+/* For your panel classes */
+.mat-mdc-snack-bar-container.snack-success {
+  --mdc-snackbar-container-color: transparent;
+  background: linear-gradient(135deg, #43a047, #66bb6a) !important;
+  color: #fff !important;
+}
+
 .mat-mdc-snack-bar-container.snack-error {
   --mdc-snackbar-container-color: transparent;
   background: linear-gradient(135deg, #e53935, #ef5350) !important;
   color: #fff !important;
-  font-weight: 600;
-  border-radius: 12px !important;
-  padding: 14px 20px !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
 }
 
-/* ✅ Info Toast */
 .mat-mdc-snack-bar-container.snack-info {
   --mdc-snackbar-container-color: transparent;
   background: linear-gradient(135deg, #1e88e5, #42a5f5) !important;
   color: #fff !important;
-  font-weight: 600;
-  border-radius: 12px !important;
-  padding: 14px 20px !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25) !important;
 }
 
-/* ✅ Style the action button */
-.mat-mdc-snack-bar-container .mat-mdc-button {
+/* Style the action button inside the snackbar */
+.mat-mdc-snack-bar-container .mdc-snackbar__actions .mdc-button__touch {
   color: #fff !important;
-  font-weight: 700;
-  text-transform: uppercase;
 }

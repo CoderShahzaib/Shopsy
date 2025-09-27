@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
@@ -6,7 +5,7 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
   providedIn: 'root',
 })
 export class ToastService {
-  constructor(private snackBar: MatSnackBar) {} 
+  constructor(private snackBar: MatSnackBar) {}
 
   show(
     message: string,
@@ -22,7 +21,7 @@ export class ToastService {
       panelClass,
       ...config,
     };
-    this.snackBar.open(message, action, cfg); 
+    this.snackBar.open(message, action, cfg);
   }
 
   success(message: string, duration = 3000) {
