@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { Profile } from '../../services/profile';
+import { ToastService } from '../../services/toastservice';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ import { Profile } from '../../services/profile';
   styleUrl: './login.css'
 })
 export class Login {
+  toast = inject(ToastService);
   loginForm : FormGroup = new FormGroup({
     UserName: new FormControl("", [Validators.required, Validators.minLength(3)]),
     UserPassword: new FormControl("", [Validators.required, Validators.minLength(8)])
@@ -32,7 +34,7 @@ export class Login {
       localStorage.setItem("user", JSON.stringify(res.data));
       this.router.navigateByUrl("/productsComponent");
     } else {
-      alert(res.message);
+      this.toast.error(res.message);
     }
   });
 }

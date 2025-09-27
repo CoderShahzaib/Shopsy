@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CartItemsModel, ProductModel } from '../../models/product';
+import { ProductModel } from '../../models/product';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../services/products';
-
+import { ToastService } from '../../services/toastservice';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.html',
@@ -13,6 +13,7 @@ export class ProductDetails implements OnInit {
   product!: ProductModel;
   route = inject(ActivatedRoute);
   productSrv = inject(ProductsService);
+  toast = inject(ToastService);
 
   ngOnInit(): void {
     this.productId = Number(this.route.snapshot.paramMap.get('id'));
@@ -21,7 +22,7 @@ export class ProductDetails implements OnInit {
       this.product = res.data;
     });
   }
-
+  
   checkUserLogin(): boolean {
     return localStorage.getItem('user') !== null;
   }
@@ -29,7 +30,7 @@ export class ProductDetails implements OnInit {
   addCart() {
     const userString = localStorage.getItem('user');
     if (!userString) {
-      alert('Please login first!');
+      this.toast.error("Please login first");
       return;
     }
 
@@ -45,7 +46,7 @@ export class ProductDetails implements OnInit {
 
     this.productSrv.addToCart(cartItem).subscribe((res) => {
       console.log('Item added to cart:', res);
-
+      this.toast.success('Item added to cart');
       this.productSrv.loadCart(userObj.custId);
     });
   }
