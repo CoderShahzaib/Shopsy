@@ -77,7 +77,7 @@ export class ProductsService {
     }
 
     return this.http
-      .get<APIResponse>(`${this.url}${API_ENDPOINT.GET_PRODUCT_BY_ID}?id=${id}`)
+      .get<APIResponse>(`${this.url} + '/productbyid'?id=${id}`)
       .pipe(tap((res) => this.setCache(key, res)));
   }
 
