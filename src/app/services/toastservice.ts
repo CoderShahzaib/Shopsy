@@ -6,7 +6,7 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
   providedIn: 'root',
 })
 export class ToastService {
-  constructor(private snackBar: MatSnackBar) {} // <-- inject MatSnackBar (service), NOT MatSnackBarModule
+  constructor(private snackBar: MatSnackBar) {} 
 
   show(
     message: string,
@@ -18,11 +18,11 @@ export class ToastService {
     const cfg: MatSnackBarConfig = {
       duration,
       verticalPosition: 'top',
-      horizontalPosition: 'end',
+      horizontalPosition: 'center',
       panelClass,
       ...config,
     };
-    this.snackBar.open(message, action, cfg); // <-- correct usage
+    this.snackBar.open(message, action, cfg); 
   }
 
   success(message: string, duration = 3000) {

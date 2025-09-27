@@ -5,3 +5,39 @@ body{
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-snack-bar-container.snack-success {
+  background: linear-gradient(135deg, #43a047, #66bb6a); /* green gradient */
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: 12px;
+  padding: 14px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.mat-snack-bar-container.snack-error {
+  background: linear-gradient(135deg, #e53935, #ef5350); /* red gradient */
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: 12px;
+  padding: 14px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.mat-snack-bar-container.snack-info {
+  background: linear-gradient(135deg, #1e88e5, #42a5f5); /* blue gradient */
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: 12px;
+  padding: 14px 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.mat-snack-bar-container .mat-button {
+  color: #fff !important;
+  font-weight: 600;
+  text-transform: uppercase;
+}
