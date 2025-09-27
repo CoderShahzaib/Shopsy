@@ -90,7 +90,7 @@ export class ProductsService {
     }
 
     return this.http
-      .get<APIResponse>(`${this.url}${API_ENDPOINT.Get_PRODUCTS_BY_CATEGORY}?id=${id}`)
+      .get<APIResponse>(`${this.url}/categorybyid?id=${id}`)
       .pipe(tap((res) => this.setCache(key, res)));
   }
 
