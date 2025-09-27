@@ -25,7 +25,7 @@ export class ProductsService {
       const parsed = JSON.parse(cached);
 
       if (parsed.expiry && Date.now() > parsed.expiry) {
-        localStorage.removeItem(key); 
+        localStorage.removeItem(key);
         return null;
       }
 
@@ -48,7 +48,7 @@ export class ProductsService {
     const cached = this.getFromCache(key);
 
     if (cached) {
-      return of(cached); 
+      return of(cached);
     }
 
     return this.http
@@ -77,7 +77,7 @@ export class ProductsService {
     }
 
     return this.http
-      .get<APIResponse>(`${this.url} + '/productbyid'?id=${id}`)
+      .get<APIResponse>(`${this.url}/productById?id=${id}`) // ✅ fixed
       .pipe(tap((res) => this.setCache(key, res)));
   }
 
