@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   try {
-    const response = await fetch("https://freeapi.miniprojectideas.com/api/amazon/GetProductById"); 
+    const response = await fetch(`https://freeapi.miniprojectideas.com/api/amazon/GetProductById?${id}`); 
     const data = await response.json();
 
     res.setHeader("Access-Control-Allow-Origin", "*");
