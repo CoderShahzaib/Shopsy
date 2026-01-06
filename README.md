@@ -1,59 +1,96 @@
-# Shopsy
+# Shopsy - E-Commerce Angular Project
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.1.
+Shopsy is a modern e-commerce web application built with **Angular** for the frontend and **ASP.NET Core** for the backend. The project demonstrates key skills like API integration, state management, dynamic UI rendering, and responsive design, making it a great portfolio project for internship applications.
+
+---
+
+## Features
+
+- Browse products and categories
+- Filter products by category
+- Add products to the cart
+- View product details
+- Responsive and modern UI
+- Caching for improved performance
+- Fully integrated with backend APIs
+
+---
+
+## Technologies Used
+
+- **Frontend:** Angular 20, TypeScript, RxJS, Tailwind CSS
+- **Backend:** ASP.NET Core Web API
+- **Database:** SQL Server
+- **Authentication:** ASP.NET Core Identity
+- **Hosting:** Vercel (Frontend), Monster ASP.NET (Backend)
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v20 or later)
+- Angular CLI (v20.3.1)
+- .NET 9
+- SQL Server
+
+### Installation
+
+1. Clone the repository:
+
+git clone https://github.com/yourusername/Shopsy.git
+cd Shopsy
+
 
 ## Development server
 
 To start a local development server, run:
 
-```bash
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+The application will run at: http://localhost:4200/
 
-## Code scaffolding
+Code Scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Generate new components, services, or modules using Angular CLI:
 
-```bash
 ng generate component component-name
-```
+ng generate service service-name
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-```bash
+For a full list of schematics:
+
 ng generate --help
-```
 
-## Building
+Building for Production
 
-To build the project run:
+To build the project for production:
 
-```bash
-ng build
-```
+ng build --configuration production
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
+Compiled artifacts will be stored in the dist/ directory.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Running Tests
+Unit Tests
 
-```bash
+Run unit tests using Karma:
+
 ng test
-```
 
-## Running end-to-end tests
+End-to-End (E2E) Tests
 
-For end-to-end (e2e) testing, run:
+Run end-to-end tests:
 
-```bash
 ng e2e
-```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+Angular CLI does not include a default e2e framework; you can choose one (like Cypress or Protractor).
 
 ## Additional Resources
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- [Angular Official Documentation](https://angular.dev)
+- [ASP.NET Core Documentation](https://learn.microsoft.com/en-us/aspnet/core)
+- [Tailwind CSS](https://tailwindcss.com)
+
