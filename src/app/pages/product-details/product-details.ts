@@ -27,27 +27,13 @@ export class ProductDetails implements OnInit {
     return localStorage.getItem('user') !== null;
   }
 
-  addCart() {
-    const userString = localStorage.getItem('user');
-    if (!userString) {
-      this.toast.error("Please login first");
-      return;
-    }
+  addCart(Id: number, quantity: number) {
+    
 
-    const userObj = JSON.parse(userString);
-
-    const cartItem = {
-      CartId: 0,
-      CustId: userObj.custId,
-      ProductId: this.productId,
-      Quantity: 1,
-      AddedDate: new Date().toISOString(),
-    };
-
-    this.productSrv.addToCart(cartItem).subscribe((res) => {
+    this.productSrv.addToCart(Id, quantity = 1).subscribe((res) => {
       console.log('Item added to cart:', res);
       this.toast.success('Item added to cart');
-      this.productSrv.loadCart(userObj.custId);
+      
     });
   }
 }

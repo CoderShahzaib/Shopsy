@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://freeapi.miniprojectideas.com/api/amazon'
+  apiUrl: 'http://shopsy.runasp.net/api/v1'
 };

@@ -1,7 +1,8 @@
 import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
-import { CategoryModel, ProductModel } from '../../models/product';
+import { ProductModel } from '../../models/product';
 import { ProductsService } from '../../services/products';
 import { Router } from '@angular/router';
+import { CategoryModel } from '../../models/category';
 
 @Component({
   selector: 'app-products-component',
@@ -43,8 +44,8 @@ export class ProductsComponent implements OnInit {
   }
   getProducts() {
     this.productSrv.getAllProducts().subscribe((res) => {
-      this.productsList.set(res.data);
-      console.log(res.data);
+      this.productsList.set(res.data.products);
+      console.log(res.data.products);
     });
   }
   getCategory() {

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
 import { ProductsService } from '../../services/products';
-import { CartItemsModel } from '../../models/product';
+import { CartItemModel } from '../../models/product';
 import { Router } from '@angular/router';
 import { ToastService } from '../../services/toastservice';
 
@@ -22,32 +22,21 @@ export class CartComponent implements OnInit {
   }
 
   ngOnInit() {
-    const userString = localStorage.getItem('user');
-    if (userString) {
-      const userObj = JSON.parse(userString);
-      this.productSrv.loadCart(userObj.custId);
-    }
+    
   }
   goToCheckout() {
     this.router.navigateByUrl('/checkout');
   }
-  get userCartItems(): CartItemsModel[] {
+  get userCartItems(): CartItemModel[] {
     return this.productSrv.cartItems();
   }
 
   getTotal(): number {
-    return this.userCartItems.reduce((sum, item) => sum + item.productPrice * item.quantity, 0);
+    return this.userCartItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0);
   }
   deleteCartItem(cartId: number) {
-    const userString = localStorage.getItem('user');
-    if (!userString) {
-      console.warn('No user logged in');
-      return;
-    }
 
-    const userObj = JSON.parse(userString);
-
-    this.productSrv.deleteCartItem(cartId, userObj.custId).subscribe({
+    this.productSrv.deleteCartItem(cartId).subscribe({
       next: () => this.toast.success('Item removed from cart'),
       error: () => this.toast.error('Failed to remove item'),
     });

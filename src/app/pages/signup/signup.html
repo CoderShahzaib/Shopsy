@@ -1,5 +1,6 @@
 <div class="flex items-center justify-center min-h-screen bg-gray-100 px-4">
   <div class="bg-white shadow-2xl rounded-2xl p-6 sm:p-8 w-full max-w-md">
+
     <h1 class="text-2xl sm:text-3xl font-bold text-center text-gray-800">Sign Up</h1>
     <p class="text-gray-500 text-center mt-2">Create a new account.</p>
 
@@ -8,19 +9,18 @@
       <div>
         <input
           type="text"
-          placeholder="Name"
-          formControlName="Name"
-          class="w-full border rounded-lg px-4 py-2 focus:outline-none transition
-                 focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
-          [class.border-red-500]="registerForm.get('Name')?.invalid && registerForm.get('Name')?.touched"
-          [class.border-green-500]="registerForm.get('Name')?.valid"
+          placeholder="Person Name"
+          formControlName="personName"
+          class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          [class.border-red-500]="registerForm.get('personName')?.invalid && registerForm.get('personName')?.touched"
+          [class.border-green-500]="registerForm.get('personName')?.valid"
         />
-        @if (registerForm.get('Name')?.touched && registerForm.get('Name')?.errors) {
-          <p class="text-red-500 text-sm mt-1">
-            @if (registerForm.get('Name')?.errors?.['required']) {
+        @if (registerForm.get('personName')?.touched && registerForm.get('personName')?.invalid) {
+          <p class="text-red-500 text-sm">
+            @if (registerForm.get('personName')?.errors?.['required']) {
               <span>Name is required.</span>
             }
-            @if (registerForm.get('Name')?.errors?.['minlength']) {
+            @if (registerForm.get('personName')?.errors?.['minlength']) {
               <span>At least 3 characters.</span>
             }
           </p>
@@ -29,21 +29,20 @@
 
       <div>
         <input
-          type="text"
-          placeholder="Mobile No"
-          formControlName="MobileNo"
-          class="w-full border rounded-lg px-4 py-2 focus:outline-none transition
-                 focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
-          [class.border-red-500]="registerForm.get('MobileNo')?.invalid && registerForm.get('MobileNo')?.touched"
-          [class.border-green-500]="registerForm.get('MobileNo')?.valid"
+          type="email"
+          placeholder="Email Address"
+          formControlName="emailAddress"
+          class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          [class.border-red-500]="registerForm.get('emailAddress')?.invalid && registerForm.get('emailAddress')?.touched"
+          [class.border-green-500]="registerForm.get('emailAddress')?.valid"
         />
-        @if (registerForm.get('MobileNo')?.touched && registerForm.get('MobileNo')?.errors) {
-          <p class="text-red-500 text-sm mt-1">
-            @if (registerForm.get('MobileNo')?.errors?.['required']) {
-              <span>Mobile number is required.</span>
+        @if (registerForm.get('emailAddress')?.touched && registerForm.get('emailAddress')?.invalid) {
+          <p class="text-red-500 text-sm">
+            @if (registerForm.get('emailAddress')?.errors?.['required']) {
+              <span>Email is required.</span>
             }
-            @if (registerForm.get('MobileNo')?.errors?.['minlength']) {
-              <span>Must be at least 10 digits.</span>
+            @if (registerForm.get('emailAddress')?.errors?.['email']) {
+              <span>Enter a valid email.</span>
             }
           </p>
         }
@@ -53,37 +52,58 @@
         <input
           type="password"
           placeholder="Password"
-          formControlName="Password"
-          class="w-full border rounded-lg px-4 py-2 focus:outline-none transition
-                 focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
-          [class.border-red-500]="registerForm.get('Password')?.invalid && registerForm.get('Password')?.touched"
-          [class.border-green-500]="registerForm.get('Password')?.valid"
+          formControlName="password"
+          class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          [class.border-red-500]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+          [class.border-green-500]="registerForm.get('password')?.valid"
         />
-        @if (registerForm.get('Password')?.touched && registerForm.get('Password')?.errors) {
-          <p class="text-red-500 text-sm mt-1">
-            @if (registerForm.get('Password')?.errors?.['required']) {
+        @if (registerForm.get('password')?.touched && registerForm.get('password')?.invalid) {
+          <p class="text-red-500 text-sm">
+            @if (registerForm.get('password')?.errors?.['required']) {
               <span>Password is required.</span>
             }
-            @if (registerForm.get('Password')?.errors?.['minlength']) {
+            @if (registerForm.get('password')?.errors?.['minlength']) {
               <span>At least 8 characters.</span>
             }
           </p>
         }
       </div>
 
+      <div>
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          formControlName="confirmPassword"
+          class="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          [class.border-red-500]="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched"
+          [class.border-green-500]="registerForm.get('confirmPassword')?.valid"
+        />
+        @if (registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.invalid) {
+          <p class="text-red-500 text-sm">
+            @if (registerForm.get('confirmPassword')?.errors?.['required']) {
+              <span>Confirm password is required.</span>
+            }
+            @if (registerForm.get('confirmPassword')?.errors?.['passwordMismatch']) {
+              <span>Passwords do not match.</span>
+            }
+          </p>
+        }
+      </div>
+
+      <!-- Button -->
       <button
         type="submit"
         [disabled]="registerForm.invalid"
-        class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 
-               text-white font-semibold py-2 px-4 rounded-lg shadow-md transition transform hover:scale-105
-               disabled:opacity-50 disabled:cursor-not-allowed">
+        class="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold py-2 rounded-lg shadow-md hover:scale-105 transition disabled:opacity-50">
         Sign Up
       </button>
+
     </form>
 
     <p class="text-sm text-gray-600 text-center mt-6">
       Already have an account?
       <a routerLink="/login" class="text-blue-600 hover:underline font-medium">Login</a>
     </p>
+
   </div>
 </div>

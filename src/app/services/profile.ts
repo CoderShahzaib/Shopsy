@@ -9,15 +9,15 @@ import { Observable } from 'rxjs';
 })
 export class Profile {
   http = inject(HttpClient);
-  url = environment.apiUrl;
+  private readonly url = environment.apiUrl;
 
   registerUser(data: RegisterCustomerModel): Observable<SignupResponse> {
-    return this.http.post<SignupResponse>(this.url + '/registeruser', data);
+    return this.http.post<SignupResponse>(this.url + '/Account/register', data);
   }
 
 
-  loginCustomer(body: { UserName: string; UserPassword: string }): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.url}/loginuser`, body);
+  loginCustomer(body: { email: string; password: string }): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.url}/Account/login`, body);
   }
 
 }

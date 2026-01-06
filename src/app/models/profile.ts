@@ -1,13 +1,14 @@
 export interface RegisterCustomerModel {
-  CustId: number
-  Name: string
-  MobileNo: string
-  Password: string
+  PersonName: string,
+  EmailAddress: string,
+  Password: string,
+  ConfirmPassword: string,
+  Role?: string
 }
 
 export interface LoginCustomerModel {
-  UserName: string
-  UserPassword: string
+  Email: string
+  Password: string
 }
 
 export interface SignupResponse {
@@ -16,9 +17,22 @@ export interface SignupResponse {
   data: string | null;
 }
 
-
 export interface LoginResponse {
   message: string;
   result: boolean;
-  data: string | null;
+  data: {
+    token: {
+      personName: string;
+      email: string;
+      token: string;    
+      expiration: string;
+    };
+    user: {
+      id: string;
+      personName: string;
+      email: string;
+      roles: string[];
+    };
+  } | null;
 }
+
