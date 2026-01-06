@@ -1,11 +1,8 @@
 {
   "/api": {
-    "target": "https://freeapi.miniprojectideas.com/api/amazon",
+    "target": "http://shopsy.runasp.net",
     "secure": false,
     "changeOrigin": true,
-    "logLevel": "debug",
-    "pathRewrite": {
-      "^/api": ""
-    }
+    "logLevel": "debug"
   }
 }
