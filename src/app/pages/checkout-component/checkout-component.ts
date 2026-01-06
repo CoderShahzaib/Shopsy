@@ -6,6 +6,7 @@ import { ProductsService } from '../../services/products';
 import { Checkout } from '../../services/checkout';
 import { CartItemModel } from '../../models/product';
 import { Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-checkout-component',
@@ -37,7 +38,7 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
   }
 
   async ngAfterViewInit() {
-    this.stripe = await loadStripe('pk_test_51Se9SL4AlCeaxIwY7H4BN840pMHnCbkyDVpDR4eMSj1LsZTcFTWbbWVOohqXta8oDgYNWdx4V90TbazW893Yew3Q00NMRef0FN'); 
+    this.stripe = await loadStripe(environment.stripePublicKey); 
     if (!this.stripe) return;
 
     const elements = this.stripe.elements();
@@ -65,7 +66,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
     if (formValue.paymentMethod === 'card') {
       this.loading = true;
 
-      // 1. Create Payment Intent
       const paymentResponse = await this.checkoutService.createPaymentIntent().toPromise();
       if (!paymentResponse.result || !paymentResponse.data) {
         this.loading = false;
@@ -78,7 +78,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
         return alert('Stripe not loaded');
       }
 
-      // 2. Confirm card payment
       const { paymentIntent, error } = await this.stripe.confirmCardPayment(this.clientSecret, {
         payment_method: {
           card: this.card,
@@ -111,7 +110,6 @@ export class CheckoutComponent implements OnInit, AfterViewInit {
       }
 
     } else {
-      // Cash on Delivery
       await this.placeOrder(formValue, null);
       this.productSrv.getAllCartItems().subscribe(cart => {
           this.productSrv.cartItems.set(cart.data!);

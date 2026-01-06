@@ -34,10 +34,8 @@ export class Login {
       console.log('📥 API Response:', res);
 
       if (res.result) {
-        // 🔑 Store ONLY the raw JWT token
         localStorage.setItem('token', res.data!.token.token);
 
-        // Optionally store user info separately
         localStorage.setItem('user', JSON.stringify(res.data!.user));
 
         this.cartSrv.getAllCartItems().subscribe(cart => {
