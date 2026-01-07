@@ -13,10 +13,10 @@ export class Checkout {
   private readonly url = environment.apiUrl;
 
   createPaymentIntent() {
-    return this.http.post<any>(`${this.url}/create-payment-intent`, {});
+    return this.http.post<any>(`${this.url}/Orders/create-payment-intent`, {});
   }
 
   placeOrder(data: any) {
-    return this.http.post<any>(`${this.url}/placeorder`, data);
+    return this.http.post<any>(`${this.url}/Orders/placeorder`, data);
   }
 }
